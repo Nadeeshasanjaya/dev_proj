@@ -117,6 +117,40 @@ pipeline {
             }
         }
 
+        stage('Deploy to EC2') {
+
+    steps {
+
+        sshagent(['ec2-ssh-key']) {
+
+            sh '''
+
+            ssh -o StrictHostKeyChecking=no ubuntu@13.127.11.11 "
+
+            docker pull $IMAGE_NAME:$IMAGE_TAG
+
+
+            docker stop saas-container || true
+
+
+            docker rm saas-container || true
+
+
+            docker run -d \
+            --name saas-container \
+            -p 80:80 \
+            $IMAGE_NAME:$IMAGE_TAG
+
+            "
+
+            '''
+
+        }
+
+    }
+
+}
+
 
 
         stage('Cleanup') {
