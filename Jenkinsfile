@@ -121,7 +121,7 @@ pipeline {
 
     steps {
 
-        sshagent(['ec2-ssh-key']) {
+        sshagent(['saas-ec2-key']) {
 
             sh '''
 
