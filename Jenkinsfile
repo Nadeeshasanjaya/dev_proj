@@ -125,7 +125,7 @@ pipeline {
 
             sh '''
 
-            ssh -o StrictHostKeyChecking=no ubuntu@13.127.11.11 "
+            ssh -o StrictHostKeyChecking=no ubuntu@35.154.74.194 "
 
             docker pull $IMAGE_NAME:$IMAGE_TAG
 
